@@ -1,10 +1,8 @@
-setwd("C:/Users/30059564/OneDrive - Western Sydney University/Myrtle rust/Apsidii control paper/Plant RNA-seq/filtering counts")
+setwd("folder location")
 install_course_packages.R
 install.packages("usethis")
-expdata <- read.csv("Unique counts_MR.csv")
-expdata <- read.csv("priming.csv")
-expdata <- read.csv("myrtle rust challenge.csv")
-expdata <- read.csv('apsidii_count_file.csv')
+expdata <- read.csv("File name.csv")
+
 str(expdata)
 
 mat <- as.matrix(expdata[, -1])
@@ -23,5 +21,5 @@ sum(rowSums(mat) >= 3)
 # remove any genes that do not meet the threshold in at least X replicates
 expdata.fil <- expdata[rowSums(mat) >= 1, ]
 
-write.csv(expdata.fil, 'apsidii counts_filtered.csv', row.names=F)
+write.csv(expdata.fil, 'filtered counts.csv', row.names=F)
 write.table(expdata.fil, 'filteredcounts1.csv', row.names=F, sep=';')
