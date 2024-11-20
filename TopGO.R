@@ -13,7 +13,7 @@ gene2GO_map <- readMappings(file="Gene2GO_cicer_2024.txt", sep = "\t")
 #Defining your list of genes of interest, and the 'gene universe' 
 geneUniverse<-names(gene2GO_map)
 head(geneUniverse)
-genesOfInterest<- read.table("bp_lr_drivers.txt",header=FALSE) #Genes you are interested in 
+genesOfInterest<- read.table("file.txt",header=FALSE) #Genes you are interested in 
 genesOfInterest <- as.character(genesOfInterest$V1)
 
 genesOfInterest
@@ -66,7 +66,7 @@ allRes
 
 #for (i in 1:length(ann.genes)) {for (j in ann.genes[i]) {for (k in j) {if (k %in% as.vector(u_myInterestedGenes)) ans=rbind(ans,c(names(ann.genes[i]),(k))) }}};
 
-write.table(allRes, file="LR72enrichment_05042024.csv", sep=",")
+write.table(allRes, file="output.csv", sep=",")
 #We can visualise the position of the statistically significant GO terms in the GO hierarchy by using the following functions:
 showSigOfNodes(myGOdata, score(resultFisher), firstSigNodes = 5, useInfo ='all')
 printGraph(myGOdata, resultFisher, firstSigNodes = 5, fn.prefix = "72(12con)down", useInfo = "all", pdfSW = TRUE)
