@@ -2,7 +2,7 @@ RNA-seq Analysis Pipeline
 
 A modular RNA-seq analysis workflow for preprocessing, differential expression, and functional annotation.
 
-🚀 Features
+Features
 
 Filter and preprocess RNA-seq count data
 
@@ -14,14 +14,14 @@ Partial Least Squares Discriminant Analysis (PLS-DA)
 
 Reproducible and adaptable R scripts
 
-📁 Repository Structure
+Repository Structure
 RNA-seq-analysis/
 ├── scripts/          # R scripts for analysis
 ├── data/             # Input counts and annotation files
 ├── plots/            # Generated figures
 └── README.md
 
-⚡ Quick Start
+Quick Start
 
 Clone the repo
 
@@ -47,12 +47,12 @@ source("scripts/PLS-DA.R")
 
 View results in plots/.
 
-📌 Notes
+Notes
 
 Scripts assume correctly formatted input files in data/
 
 Modular workflow: adapt scripts to your dataset as needed
 
-⚖️ License
+License
 
 MIT License © Donovin Coles
