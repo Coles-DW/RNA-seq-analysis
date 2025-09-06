@@ -5,22 +5,29 @@ This repository contains R scripts and workflows for the analysis of RNA-seq dat
 Repository Structure
 RNA-seq-analysis/
 ├── scripts/
-│   ├── DEG_Analysis.R                 # Differential gene expression analysis  
-│   ├── DEG_Proportions_Plot.R         # Bar plot of up- and down-regulated DEGs  
-│   ├── GO_Enrichment_Visualization.R  # Visualization of GO enrichment (g:Profiler results)  
-│   ├── Spearman_Correlation_Network.R # Correlation analysis for network visualization  
-│   └── utils/                         # Helper functions (if needed)  
-├── data/                              # Input data (not included in repo for confidentiality)  
-├── results/                           # Example output figures and tables  
-└── README.md                          # Documentation  
+│   ├── DEG_barplot_timecourse.R   # Plot bar charts of differentially expressed genes over time/conditions  
+│   ├── DEseq2.R                   # Differential expression analysis using DESeq2  
+│   ├── Filtering_counts.R         # Preprocessing and filtering of raw count data  
+│   ├── GO_enrichment_barplot.R    # Visualization of GO enrichment results (e.g. g:Profiler, topGO)  
+│   ├── Merge.R                    # Combine and organize outputs from different steps  
+│   ├── PLS-DA.R                   # Partial Least Squares Discriminant Analysis for expression profiles  
+│   ├── TopGO.R                    # Functional enrichment using the topGO package  
+│   └── utils/                     # (Optional) helper functions  
+├── data/                          # Input data (not included for confidentiality)  
+├── results/                       # Example outputs (plots, tables)  
+└── README.md                      # Documentation  
 
 Requirements
 
-The scripts rely on the following R packages:
+The following R packages are used throughout the scripts:
 
 tidyverse
 
 ggplot2
+
+DESeq2
+
+topGO
 
 car
 
@@ -34,8 +41,6 @@ visreg
 
 ggeffects
 
-lme4
-
 gridExtra
 
 viridis
@@ -44,33 +49,36 @@ Install missing packages with:
 
 install.packages(c("tidyverse", "ggplot2", "car", "emmeans", 
                    "multcompView", "multcomp", "visreg", 
-                   "ggeffects", "lme4", "gridExtra", "viridis"))
+                   "ggeffects", "gridExtra", "viridis"))
+
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install(c("DESeq2", "topGO"))
 
 Example Workflows
 
-Differential Expression Analysis
+Data Preprocessing
 
-Run statistical models (linear or mixed effects).
+Use Filtering_counts.R to filter raw RNA-seq counts for quality control.
 
-Perform pairwise contrasts.
+Differential Expression
 
-Generate ANOVA tables and effect plots.
+Run DEseq2.R for differential gene expression analysis.
 
-DEG Proportion Plotting
+Use DEG_barplot_timecourse.R to visualize DEGs across time or treatment.
 
-Visualize numbers of up- and down-regulated genes across timepoints or conditions.
+Functional Enrichment
 
-GO Term Enrichment
+Perform GO analysis with TopGO.R.
 
-Import results from g:Profiler or other tools.
+Plot results with GO_enrichment_barplot.R.
 
-Generate dot plots of enriched terms by category.
+Advanced Analyses
 
-Correlation Network Analysis
+Run PLS-DA.R for multivariate separation of experimental groups.
 
-Calculate Spearman correlations across samples.
-
-Export network edge lists for Cytoscape or other visualization platforms.
+Combine multiple outputs with Merge.R.
 
 Usage
 
@@ -78,13 +86,15 @@ Clone the repository and run scripts in R:
 
 git clone https://github.com/Coles-DW/RNA-seq-analysis.git
 cd RNA-seq-analysis/scripts
-Rscript DEG_Analysis.R
+Rscript DEseq2.R
 
 
-Alternatively, open scripts in RStudio for interactive exploration.
+Or open the scripts in RStudio for interactive analysis.
 
 Notes
 
-Input data files are not provided for confidentiality.
+Input data is not included for confidentiality.
 
-Scripts are written to be modular and can be adapted to other datasets.
+Scripts are written to be modular and customizable.
+
+Example figures and outputs can be stored in the results/ directory.
